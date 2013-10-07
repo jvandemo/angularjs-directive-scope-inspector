@@ -1,0 +1,380 @@
+// Core variables and mixins
+@import "bootstrap/variables";
+  // Import bootstrap mixins
+@import "../../public/bower/bootstrap/less/mixins";
+  // Import own mixins
+@import "mixins";
+
+//
+// VARIABLES
+// -----------------------------------------------
+
+@paddingDefault : 30px;
+@paddingXxs     : 5px;
+@paddingXs      : 10px;
+@paddingS       : 15px;
+@paddingM       : 30px;
+@paddingL       : 45px;
+@paddingXl      : 60px;
+@paddingXxl     : 120px;
+
+@marginDefault : 30px;
+@marginXxs     : 5px;
+@marginXs      : 10px;
+@marginS       : 15px;
+@marginM       : 30px;
+@marginL       : 45px;
+@marginXl      : 60px;
+@marginXxl     : 120px;
+
+//
+// Body
+// --------------------------------------------------
+
+body {
+  background: #06081d url(../img/bg2.jpg) no-repeat;
+  background-size: cover;
+  font-weight: 100;
+  padding-bottom: 100px;
+}
+
+pre{
+  background: rgba(0,0,0,0.2);
+  .border-radius(0);
+  color: #e5edd4;
+}
+
+.form-control{
+  color: #e5edd4;
+  background: rgba(0,0,0,0.1);
+  &[disabled]{
+    background: rgba(0,0,0,0.5);
+  }
+}
+
+.inspector{
+
+  &-panel{
+    background: rgba(0,0,0,0.2);
+    padding: @grid-gutter-width;
+    &-header{
+      h1,h2,h3,h4,h5,h6{
+        margin: 0;
+      }
+    }
+  }
+
+  &-highlight{
+    color: white;
+    border-color: #d9534f;
+    background-color: rgba(217,83,79, 0.3);
+  }
+
+  &-padding {
+    padding: @paddingDefault;
+    &-zero {
+      padding: 0
+    }
+    &-xxs {
+      padding: @paddingXxs
+    }
+    &-xs {
+      padding: @paddingXs
+    }
+    &-s {
+      padding: @paddingS
+    }
+    &-m {
+      padding: @paddingM
+    }
+    &-l {
+      padding: @paddingL
+    }
+    &-xl {
+      padding: @paddingXl
+    }
+    &-xxl {
+      padding: @paddingXxl
+    }
+  }
+
+  &-padding-top {
+    padding-top: @paddingDefault;
+    &-zero {
+      padding-top: 0
+    }
+    &-xxs {
+      padding-top: @paddingXxs
+    }
+    &-xs {
+      padding-top: @paddingXs
+    }
+    &-s {
+      padding-top: @paddingS
+    }
+    &-m {
+      padding-top: @paddingM
+    }
+    &-l {
+      padding-top: @paddingL
+    }
+    &-xl {
+      padding-top: @paddingXl
+    }
+    &-xxl {
+      padding-top: @paddingXxl
+    }
+  }
+
+  &-padding-right {
+    padding-right: @paddingDefault;
+    &-zero {
+      padding-right: 0
+    }
+    &-xxs {
+      padding-right: @paddingXxs
+    }
+    &-xs {
+      padding-right: @paddingXs
+    }
+    &-s {
+      padding-right: @paddingS
+    }
+    &-m {
+      padding-right: @paddingM
+    }
+    &-l {
+      padding-right: @paddingL
+    }
+    &-xl {
+      padding-right: @paddingXl
+    }
+    &-xxl {
+      padding-right: @paddingXxl
+    }
+  }
+
+  &-padding-bottom {
+    padding-bottom: @paddingDefault;
+    &-zero {
+      padding-bottom: 0
+    }
+    &-xxs {
+      padding-bottom: @paddingXxs
+    }
+    &-xs {
+      padding-bottom: @paddingXs
+    }
+    &-s {
+      padding-bottom: @paddingS
+    }
+    &-m {
+      padding-bottom: @paddingM
+    }
+    &-l {
+      padding-bottom: @paddingL
+    }
+    &-xl {
+      padding-bottom: @paddingXl
+    }
+    &-xxl {
+      padding-bottom: @paddingXxl
+    }
+  }
+
+  &-padding-left {
+    padding-left: @paddingDefault;
+    &-zero {
+      padding-left: 0
+    }
+    &-xxs {
+      padding-left: @paddingXxs
+    }
+    &-xs {
+      padding-left: @paddingXs
+    }
+    &-s {
+      padding-left: @paddingS
+    }
+    &-m {
+      padding-left: @paddingM
+    }
+    &-l {
+      padding-left: @paddingL
+    }
+    &-xl {
+      padding-left: @paddingXl
+    }
+    &-xxl {
+      padding-left: @paddingXxl
+    }
+  }
+
+  &-margin {
+    margin: @marginDefault;
+    &-zero {
+      margin: 0
+    }
+    &-xxs {
+      margin: @marginXxs
+    }
+    &-xs {
+      margin: @marginXs
+    }
+    &-s {
+      margin: @marginS
+    }
+    &-m {
+      margin: @marginM
+    }
+    &-l {
+      margin: @marginL
+    }
+    &-xl {
+      margin: @marginXl
+    }
+    &-xxl {
+      margin: @marginXxl
+    }
+  }
+
+  &-margin-top {
+    margin-top: @marginDefault;
+    &-zero {
+      margin-top: 0
+    }
+    &-xxs {
+      margin-top: @marginXxs
+    }
+    &-xs {
+      margin-top: @marginXs
+    }
+    &-s {
+      margin-top: @marginS
+    }
+    &-m {
+      margin-top: @marginM
+    }
+    &-l {
+      margin-top: @marginL
+    }
+    &-xl {
+      margin-top: @marginXl
+    }
+    &-xxl {
+      margin-top: @marginXxl
+    }
+    &-xxs-inverse {
+      margin-top: -1 * @marginXxs
+    }
+    &-xs-inverse {
+      margin-top: -1 * @marginXs
+    }
+    &-s-inverse {
+      margin-top: -1 * @marginS
+    }
+    &-m-inverse {
+      margin-top: -1 * @marginM
+    }
+    &-l-inverse {
+      margin-top: -1 * @marginL
+    }
+    &-xl-inverse {
+      margin-top: -1 * @marginXl
+    }
+    &-xxl-inverse {
+      margin-top: -1 * @marginXxl
+    }
+  }
+
+  &-margin-right {
+    margin-right: @marginDefault;
+    &-zero {
+      margin-right: 0
+    }
+    &-xxs {
+      margin-right: @marginXxs
+    }
+    &-xs {
+      margin-right: @marginXs
+    }
+    &-s {
+      margin-right: @marginS
+    }
+    &-m {
+      margin-right: @marginM
+    }
+    &-l {
+      margin-right: @marginL
+    }
+    &-xl {
+      margin-right: @marginXl
+    }
+    &-xxl {
+      margin-right: @marginXxl
+    }
+  }
+
+  &-margin-bottom {
+    margin-bottom: @marginDefault;
+    &-zero {
+      margin-bottom: 0
+    }
+    &-xxs {
+      margin-bottom: @marginXxs
+    }
+    &-xs {
+      margin-bottom: @marginXs
+    }
+    &-s {
+      margin-bottom: @marginS
+    }
+    &-m {
+      margin-bottom: @marginM
+    }
+    &-l {
+      margin-bottom: @marginL
+    }
+    &-xl {
+      margin-bottom: @marginXl
+    }
+    &-xxl {
+      margin-bottom: @marginXxl
+    }
+  }
+
+  &-margin-left {
+    margin-left: @marginDefault;
+    &-zero {
+      margin-left: 0
+    }
+    &-xxs {
+      margin-left: @marginXxs
+    }
+    &-xs {
+      margin-left: @marginXs
+    }
+    &-s {
+      margin-left: @marginS
+    }
+    &-m {
+      margin-left: @marginM
+    }
+    &-l {
+      margin-left: @marginL
+    }
+    &-xl {
+      margin-left: @marginXl
+    }
+    &-xxl {
+      margin-left: @marginXxl
+    }
+  }
+
+  &-full-width {
+    width: 100%;
+  }
+
+}
+
+

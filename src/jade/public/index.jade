@@ -1,0 +1,317 @@
+extends ../layouts/default
+
+block content
+
+    script#tplDirective(type="text/ng-template")
+
+        ul.list-unstyled
+            li scope.$id
+            li
+                input.form-control(ng-model="$id", disabled)
+
+            li scope.name.first
+            li
+                input.form-control(ng-model="name.first", highlight)
+
+            li scope.name.last
+            li
+                input.form-control(ng-model="name.last", highlight)
+
+            li scope.toys[0]
+            li
+                input.form-control(ng-model="toys[0]", highlight)
+
+            li scope.toys[1]
+            li
+                input.form-control(ng-model="toys[1]", highlight)
+
+            li scope.description
+            li
+                input.form-control(ng-model="description", highlight)
+
+    div.container
+        div.row
+            div.col-lg-12.col-md-12.col-sm-12.col-xs-12
+
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+                        h1 AngularJS Directive Scope Inspector
+
+        div.row
+            div.col-lg-6.col-md-6.col-sm-12.col-xs-12
+
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+                        h3 Consider a  controller:
+                    div.inspector-panel-content
+                        pre.inspector-margin-top-m.
+                            app.controller('ParentCtrl', function($scope) {
+                                $scope.name = {
+                                    first: 'ControllerFirstName',
+                                    last: 'ControllerLastName'
+                                };
+                                $scope.description = "ControllerDescription";
+                            });
+
+            div.col-lg-6.col-md-6.col-sm-12.col-xs-12
+
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+                        h3 A directive linking function:
+                    div.inspector-panel-content
+                        pre.inspector-margin-top-m.
+                            var linkingFn = function(scope, iElement, iAttrs){
+                                scope.name = scope.name || {};
+                                scope.name.first = 'DirectiveFirstName';
+                                scope.toys = [
+                                    'DirectiveToy1',
+                                    'DirectiveToy2'
+                                ];
+                                scope.description = "DirectiveDescription";
+                                return;
+                            };
+
+        div.row
+            div.col-lg-12.col-md-12.col-sm-12.col-xs-12
+
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+                        h3 And three directives with the same linking function but a different scope setting:
+
+                    div.inspector-panel-content
+                        div.row
+                            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+
+                                div.inspector-margin-top-l
+                                    h4 noScope
+                                    pre.inspector-margin-top-m.
+                                        app.directive('noScope', function(){
+                                            return {
+                                                scope: false,
+                                                link: linkingFn
+                                            };
+                                        });
+
+                            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+
+                                div.inspector-margin-top-l
+                                    h4 childScope
+                                    pre.inspector-margin-top-m.
+                                        app.directive('childScope', function(){
+                                            return {
+                                                scope: true,
+                                                link: linkingFn
+                                            };
+                                        });
+
+                            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+
+                                div.inspector-margin-top-l
+                                    h4 isolateScope
+                                    pre.inspector-margin-top-m.
+                                        app.directive('isolateScope', function(){
+                                            return {
+                                                scope: {},
+                                                link: linkingFn
+                                            };
+                                        });
+
+        div.row
+            div.col-lg-12.col-md-12.col-sm-12.col-xs-12
+
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+                        h2 The result
+                        p Each column below represents a directive with a different scope setting.
+                        p You can play around with the values in the input fields below. The corresponding models in other elements will highlight for 5 seconds to visually accentuate how your change affects the scopes.
+
+
+        div.row
+            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+                        h3 scope = false
+
+                    div.inspector-panel-content
+                        pre.inspector-margin-top-m.
+                            &lt;div ng-controller=&quot;ParentCtrl&quot;&gt;
+                                &lt;div no-scope&gt;
+                                &lt;div no-scope&gt;
+                            &lt;/div&gt;
+
+            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+                        h3 scope = true
+
+                    div.inspector-panel-content
+                        pre.inspector-margin-top-m.
+                            &lt;div ng-controller=&quot;ParentCtrl&quot;&gt;
+                                &lt;div child-scope&gt;
+                                &lt;div child-scope&gt;
+                            &lt;/div&gt;
+
+            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+                        h3 scope = {}
+
+                    div.inspector-panel-content
+                        pre.inspector-margin-top-m.
+                            &lt;div ng-controller=&quot;ParentCtrl&quot;&gt;
+                                &lt;div isolate-scope&gt;
+                                &lt;div isolate-scope&gt;
+                            &lt;/div&gt;
+
+        div.row
+            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+
+                    div.inspector-panel-content(ng-controller="ParentCtrl")
+
+                        h4 ParentCtrl scope:
+
+                        ul.list-unstyled
+                            li scope.$id
+                            li
+                                input.form-control(ng-model="$id", disabled)
+
+                            li scope.name.first
+                            li
+                                input.form-control(ng-model="name.first", highlight)
+
+                            li scope.name.last
+                            li
+                                input.form-control(ng-model="name.last", highlight)
+
+                            li scope.toys[0]
+                            li
+                                input.form-control(ng-model="toys[0]", highlight)
+
+                            li scope.toys[1]
+                            li
+                                input.form-control(ng-model="toys[1]", highlight)
+
+                            li scope.description
+                            li
+                                input.form-control(ng-model="description", highlight)
+
+                        h4.inspector-margin-top-l Directive 1 scope:
+
+                        div(no-scope)
+
+                        h4.inspector-margin-top-l Directive 2 scope:
+
+                        div(no-scope)
+
+                        h4.inspector-margin-top-l Conclusion:
+
+                        ul
+                            li Each directive gets the same scope
+                            li Directive accesses parent scope directly
+                            li Changes made to the directive scope are directly affecting the parent scope
+                            li Changes made to the parent scope are directly affecting the directive scope
+
+            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+
+                    div.inspector-panel-content(ng-controller="ParentCtrl")
+
+                        h4 ParentCtrl scope:
+
+                        ul.list-unstyled
+                            li scope.$id
+                            li
+                                input.form-control(ng-model="$id", disabled)
+
+                            li scope.name.first
+                            li
+                                input.form-control(ng-model="name.first", highlight)
+
+                            li scope.name.last
+                            li
+                                input.form-control(ng-model="name.last", highlight)
+
+                            li scope.toys[0]
+                            li
+                                input.form-control(ng-model="toys[0]", highlight)
+
+                            li scope.toys[1]
+                            li
+                                input.form-control(ng-model="toys[1]", highlight)
+
+                            li scope.description
+                            li
+                                input.form-control(ng-model="description", highlight)
+
+                        h4.inspector-margin-top-l Directive 1 scope:
+
+                        div(child-scope)
+
+                        h4.inspector-margin-top-l Directive 2 scope:
+
+                        div(child-scope)
+
+                        h4.inspector-margin-top-l Conclusion:
+
+                        ul
+                            li Each directive gets a separate scope
+                            li Directive gets a scope that inherits all data from the parent scope (child scope)
+                            li Changes made to the directive scope are affecting the parent scope if a dot notation is used
+                            li Changes made to the directive scope are NOT affecting the parent scope if no dot notation is used
+                            li Changes made to the parent scope are affecting the directive scope if the directive accesses that data using dot notation
+                            li Changes made to the parent scope are NOT affecting the directive scope if the directive does NOT access that data using dot notation
+
+
+            div.col-lg-4.col-md-4.col-sm-12.col-xs-12
+
+                div.inspector-panel.inspector-margin-top-l
+                    div.inspector-panel-header
+
+                    div.inspector-panel-content(ng-controller="ParentCtrl")
+
+                        h4 ParentCtrl scope:
+
+                        ul.list-unstyled
+                            li scope.$id
+                            li
+                                input.form-control(ng-model="$id", disabled)
+
+                            li scope.name.first
+                            li
+                                input.form-control(ng-model="name.first", highlight)
+
+                            li scope.name.last
+                            li
+                                input.form-control(ng-model="name.last", highlight)
+
+                            li scope.toys[0]
+                            li
+                                input.form-control(ng-model="toys[0]", highlight)
+
+                            li scope.toys[1]
+                            li
+                                input.form-control(ng-model="toys[1]", highlight)
+
+                            li scope.description
+                            li
+                                input.form-control(ng-model="description", highlight)
+
+                        h4.inspector-margin-top-l Directive 1 scope:
+
+                        div(isolate-scope)
+
+                        h4.inspector-margin-top-l Directive 2 scope:
+
+                        div(isolate-scope)
+
+                        h4.inspector-margin-top-l Conclusion:
+
+                        ul
+                            li Each directive gets a separate scope
+                            li Changes to the directive scope are not affecting the parent scope
+                            li Changes to the parent scope are not affecting the directive scope

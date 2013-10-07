@@ -1,0 +1,7 @@
+/**
+ * @license JobberID
+ * (c) 2013 JobberID http://www.jobberid.com
+ * @author Jurgen Van de Moere
+ */
+(function(window, document) {
+

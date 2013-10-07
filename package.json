@@ -1,0 +1,27 @@
+{
+  "name": "angularjs-directive-scope-inspector",
+  "version": "0.1.0",
+  "description": "AngularJS directive scope inspector",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "angular",
+    "directive",
+    "scope",
+    "angularjs"
+  ],
+  "author": "Jurgen Van de Moere",
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-concat": "~0.1.2",
+    "grunt-contrib-uglify": "~0.1.1",
+    "grunt-contrib-watch": "~0.4.3",
+    "grunt-contrib-less": "~0.6.2",
+    "grunt-contrib-jade": "~0.8.0"
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html><html ng-app="inspector"><head><meta charset="utf8"><title>AngularJS Directive Scope Inspector</title><link rel="stylesheet" href="css/bootstrap/bootstrap.css"><link rel="stylesheet" href="css/flaticons/solid/solid.css"><link rel="stylesheet" href="css/flaticons/stroke/stroke.css"><link rel="stylesheet" href="css/flaticons/social/social.css"><link rel="stylesheet" href="css/inspector.css"><script src="js/build.js"></script><script src="js/inspector.js"></script><script src="//use.typekit.net/xlg6xil.js"></script><script>try{Typekit.load();}catch(e){}
+
+</script><body ng-controller="AppCtrl"><script id="tplDirective" type="text/ng-template"><ul class="list-unstyled"><li>scope.$id</li><li><input ng-model="$id" disabled class="form-control"></li><li>scope.name.first</li><li><input ng-model="name.first" highlight class="form-control"></li><li>scope.name.last</li><li><input ng-model="name.last" highlight class="form-control"></li><li>scope.toys[0]</li><li><input ng-model="toys[0]" highlight class="form-control"></li><li>scope.toys[1]</li><li><input ng-model="toys[1]" highlight class="form-control"></li><li>scope.description</li><li><input ng-model="description" highlight class="form-control"></li></ul></script><div class="container"><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"><h1>AngularJS Directive Scope Inspector</h1></div></div></div></div><div class="row"><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"><h3>Consider a  controller:</h3></div><div class="inspector-panel-content"><pre class="inspector-margin-top-m">app.controller('ParentCtrl', function($scope) {
+    $scope.name = {
+        first: 'ControllerFirstName',
+        last: 'ControllerLastName'
+    };
+    $scope.description = "ControllerDescription";
+});
+</pre></div></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"><h3>A directive linking function:</h3></div><div class="inspector-panel-content"><pre class="inspector-margin-top-m">var linkingFn = function(scope, iElement, iAttrs){
+    scope.name = scope.name || {};
+    scope.name.first = 'DirectiveFirstName';
+    scope.toys = [
+        'DirectiveToy1',
+        'DirectiveToy2'
+    ];
+    scope.description = "DirectiveDescription";
+    return;
+};
+</pre></div></div></div></div><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"><h3>And three directives with the same linking function but a different scope setting:</h3></div><div class="inspector-panel-content"><div class="row"><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-margin-top-l"><h4>noScope</h4><pre class="inspector-margin-top-m">app.directive('noScope', function(){
+    return {
+        scope: false,
+        link: linkingFn
+    };
+});
+</pre></div></div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-margin-top-l"><h4>childScope</h4><pre class="inspector-margin-top-m">app.directive('childScope', function(){
+    return {
+        scope: true,
+        link: linkingFn
+    };
+});
+</pre></div></div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-margin-top-l"><h4>isolateScope</h4><pre class="inspector-margin-top-m">app.directive('isolateScope', function(){
+    return {
+        scope: {},
+        link: linkingFn
+    };
+});
+</pre></div></div></div></div></div></div></div><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"><h2>The result</h2><p>Each column below represents a directive with a different scope setting.</p><p>You can play around with the values in the input fields below. The corresponding models in other elements will highlight for 5 seconds to visually accentuate how your change affects the scopes.</p></div></div></div></div><div class="row"><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"><h3>scope = false</h3></div><div class="inspector-panel-content"><pre class="inspector-margin-top-m">&lt;div ng-controller=&quot;ParentCtrl&quot;&gt;
+    &lt;div no-scope&gt;
+    &lt;div no-scope&gt;
+&lt;/div&gt;
+</pre></div></div></div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"><h3>scope = true</h3></div><div class="inspector-panel-content"><pre class="inspector-margin-top-m">&lt;div ng-controller=&quot;ParentCtrl&quot;&gt;
+    &lt;div child-scope&gt;
+    &lt;div child-scope&gt;
+&lt;/div&gt;
+</pre></div></div></div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"><h3>scope = {}</h3></div><div class="inspector-panel-content"><pre class="inspector-margin-top-m">&lt;div ng-controller=&quot;ParentCtrl&quot;&gt;
+    &lt;div isolate-scope&gt;
+    &lt;div isolate-scope&gt;
+&lt;/div&gt;
+</pre></div></div></div></div><div class="row"><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"></div><div ng-controller="ParentCtrl" class="inspector-panel-content"><h4>ParentCtrl scope:</h4><ul class="list-unstyled"><li>scope.$id</li><li><input ng-model="$id" disabled class="form-control"></li><li>scope.name.first</li><li><input ng-model="name.first" highlight class="form-control"></li><li>scope.name.last</li><li><input ng-model="name.last" highlight class="form-control"></li><li>scope.toys[0]</li><li><input ng-model="toys[0]" highlight class="form-control"></li><li>scope.toys[1]</li><li><input ng-model="toys[1]" highlight class="form-control"></li><li>scope.description</li><li><input ng-model="description" highlight class="form-control"></li></ul><h4 class="inspector-margin-top-l">Directive 1 scope:</h4><div no-scope></div><h4 class="inspector-margin-top-l">Directive 2 scope:</h4><div no-scope></div><h4 class="inspector-margin-top-l">Conclusion:</h4><ul><li>Each directive gets the same scope</li><li>Directive accesses parent scope directly</li><li>Changes made to the directive scope are directly affecting the parent scope</li><li>Changes made to the parent scope are directly affecting the directive scope</li></ul></div></div></div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"></div><div ng-controller="ParentCtrl" class="inspector-panel-content"><h4>ParentCtrl scope:</h4><ul class="list-unstyled"><li>scope.$id</li><li><input ng-model="$id" disabled class="form-control"></li><li>scope.name.first</li><li><input ng-model="name.first" highlight class="form-control"></li><li>scope.name.last</li><li><input ng-model="name.last" highlight class="form-control"></li><li>scope.toys[0]</li><li><input ng-model="toys[0]" highlight class="form-control"></li><li>scope.toys[1]</li><li><input ng-model="toys[1]" highlight class="form-control"></li><li>scope.description</li><li><input ng-model="description" highlight class="form-control"></li></ul><h4 class="inspector-margin-top-l">Directive 1 scope:</h4><div child-scope></div><h4 class="inspector-margin-top-l">Directive 2 scope:</h4><div child-scope></div><h4 class="inspector-margin-top-l">Conclusion:</h4><ul><li>Each directive gets a separate scope</li><li>Directive gets a scope that inherits all data from the parent scope (child scope)</li><li>Changes made to the directive scope are affecting the parent scope if a dot notation is used</li><li>Changes made to the directive scope are NOT affecting the parent scope if no dot notation is used</li><li>Changes made to the parent scope are affecting the directive scope if the directive accesses that data using dot notation</li><li>Changes made to the parent scope are NOT affecting the directive scope if the directive does NOT access that data using dot notation</li></ul></div></div></div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><div class="inspector-panel inspector-margin-top-l"><div class="inspector-panel-header"></div><div ng-controller="ParentCtrl" class="inspector-panel-content"><h4>ParentCtrl scope:</h4><ul class="list-unstyled"><li>scope.$id</li><li><input ng-model="$id" disabled class="form-control"></li><li>scope.name.first</li><li><input ng-model="name.first" highlight class="form-control"></li><li>scope.name.last</li><li><input ng-model="name.last" highlight class="form-control"></li><li>scope.toys[0]</li><li><input ng-model="toys[0]" highlight class="form-control"></li><li>scope.toys[1]</li><li><input ng-model="toys[1]" highlight class="form-control"></li><li>scope.description</li><li><input ng-model="description" highlight class="form-control"></li></ul><h4 class="inspector-margin-top-l">Directive 1 scope:</h4><div isolate-scope></div><h4 class="inspector-margin-top-l">Directive 2 scope:</h4><div isolate-scope></div><h4 class="inspector-margin-top-l">Conclusion:</h4><ul><li>Each directive gets a separate scope</li><li>Changes to the directive scope are not affecting the parent scope</li><li>Changes to the parent scope are not affecting the directive scope</li></ul></div></div></div></div></div></body></head></html>

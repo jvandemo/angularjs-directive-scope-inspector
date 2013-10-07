@@ -1,0 +1,19 @@
+{
+    "name": "angularjs-directive-scope-inspector",
+    "version": "0.1.0",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "components"
+    ],
+    "dependencies": {
+        "html5shiv": "~3.6.2",
+        "angular": "~1.0.7",
+        "jquery": "~2.0.2",
+        "animate.css": "latest",
+        "bootstrap": "~3.0.0-rc1",
+        "json2": "latest",
+        "jasmine-jquery": "~1.5.2",
+        "angular-mocks": "~1.2.0-rc.2"
+    }
+}
